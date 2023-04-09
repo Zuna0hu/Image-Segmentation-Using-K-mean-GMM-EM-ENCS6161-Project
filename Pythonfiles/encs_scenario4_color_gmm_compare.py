@@ -1,4 +1,4 @@
-# RBG image without histogram
+# RBG image GMM for comparing
 import cv2
 import numpy as np
 from sklearn.mixture import GaussianMixture
@@ -7,16 +7,17 @@ import matplotlib.pyplot as plt
 # Load color image
 # Load image
 
-img = cv2.imread(r'D:\encs6161\project\street_view_10_cut.jpg')
+img = cv2.imread(r'D:\encs6161\git_project\Image\street_view_10_cut.jpg')
 
 # Reshape the image to a large vector
 img_vector = img.reshape((-1, 3))
 
 # Initialize means and covariances for GMM
+'''
 K = 3
 init_means = np.array([[50, 0, 0], [0, 50, 0], [0, 0, 50]])  # Reshape means array to have shape (3,3)
 init_covars = np.array([[[50, 0, 0], [0, 50, 0], [0, 0, 50]]] * K)
-
+'''
 '''
 K =4
 init_means = np.array([[50, 0, 0], [0, 50, 0], [0, 0, 50], [25, 25, 25]])
@@ -27,9 +28,20 @@ init_covars = np.array([[[50, 0, 0], [0, 50, 0], [0, 0, 50]]] * K)
 K = 5
 init_means = np.array([[50, 0, 0], [0, 50, 0], [0, 0, 50], [25, 25, 25], [50, 50, 50]])
 init_covars = np.array([[[50, 0, 0], [0, 50, 0], [0, 0, 50]]] * K)
-
 '''
 
+#'''
+K = 10
+init_means = np.array([[50, 0, 0], [0, 50, 0], [0, 0, 50], [25, 25, 25], [50, 50, 50], [75, 75, 75], [100, 0, 0], [0, 100, 0], [0, 0, 100], [100, 100, 100]])
+init_covars = np.array([[[50, 0, 0], [0, 50, 0], [0, 0, 50]]] * K)
+#'''
+
+'''
+K = 15
+init_means = np.array([[50, 0, 0], [0, 50, 0], [0, 0, 50], [25, 25, 25], [50, 50, 50], [75, 75, 75], [100, 0, 0], [0, 100, 0], [0, 0, 100], [100, 100, 100], [25, 0, 0], [0, 25, 0], [0, 0, 25], [75, 0, 0], [0, 75, 0]])
+init_covars = np.array([[[50, 0, 0], [0, 50, 0], [0, 0, 50]]] * K)
+
+'''
 
 # Fit GMM to image vector data
 gmm = GaussianMixture(n_components=K, means_init=init_means,
@@ -57,4 +69,4 @@ displaying it. '''
 to scale and shift the pixel values to fit into the 0-255 range. We then display the converted image using 
 cv2.imshow(). Finally, we wait for a key press and then close the window using cv2.destroyAllWindows(). '''
 # Save the segmented image with filename as segmented_image_k={k}.jpg
-cv2.imwrite('D:\encs6161\project\encs3.28\sc2\segmented_image_k={}.jpg'.format(K), imseg_disp)
+cv2.imwrite('D:\encs6161\git_project\Segmented Images\Scenario2\Image2_segmented_image_k={}.jpg'.format(K), imseg_disp)

@@ -1,3 +1,4 @@
+# RGB image GMM
 import cv2
 import numpy as np
 from fitfunction import fit_gmm
@@ -38,5 +39,5 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # Save the segmented image with filename as segmented_image_k={k}.jpg
-cv2.imwrite('D:\encs6161\git_project\Segmented Images\Scenario4\street_view_10_cut_segmented_image_k={}.jpg'.format(K),
+cv2.imwrite('D:\encs6161\git_project\Segmented Images\Scenario3\street_view_10_cut_segmented_image_k={}.jpg'.format(K),
             imseg_disp)
